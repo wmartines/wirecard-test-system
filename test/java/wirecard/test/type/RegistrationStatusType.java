@@ -1,5 +1,10 @@
-package type;
+package wirecard.test.type;
 
+/**
+ * Class created to map the registration status type api return
+ * @author wilson
+ *
+ */
 public enum RegistrationStatusType {
 	
 	/**Registration with success*/
@@ -8,7 +13,7 @@ public enum RegistrationStatusType {
 	/**Waiting additional information*/
 	IN_REGISTRATION("IN_REGISTRATION");
 	
-	/** The registration status descripion*/
+	/** The registration descripion*/
 	private final String description;
 	
 	RegistrationStatusType(String description){
@@ -16,7 +21,7 @@ public enum RegistrationStatusType {
 		this.description = description;
 	}
 	
-	/** Gets the registration status descripion*/
+	/** Gets the registration descripion*/
 	public String getDescription() {
 		return description;
 	}
