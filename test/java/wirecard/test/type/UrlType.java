@@ -8,7 +8,7 @@ package wirecard.test.type;
 public enum UrlType {
 	
 	/** Registration URL*/
-	REGISTRATION_URL("http://xvyqk.mocklab.io/register/user"),
+	REGISTRATION_URL("http://localhost:8080/user/save"),
 	
 	/** Card detail URL*/
 	CARD_DETAIL_URL("http://xvyqk.mocklab.io/card/user"),

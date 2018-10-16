@@ -66,8 +66,8 @@ public class CardLockTest {
 
 		// Assert result request
 		Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK);
-		Assert.assertTrue(result.getDescription().equals(CardLockKeyType.OK.getDescription()));
-		Assert.assertTrue(!StringUtils.isEmpty(result.getDescription()));
+		Assert.assertTrue(result.getErrorMessage().equals(CardLockKeyType.OK.getDescription()));
+		Assert.assertTrue(!StringUtils.isEmpty(result.getErrorMessage()));
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class CardLockTest {
 
 		// Assert result request
 		Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST);
-		Assert.assertTrue(result.getDescription().equals(CardLockKeyType.MISSING_PARAMETER.getDescription()));
+		Assert.assertTrue(result.getErrorMessage().equals(CardLockKeyType.MISSING_PARAMETER.getDescription()));
 		Assert.assertTrue(result.getErrorKey().equals(CardLockKeyType.MISSING_PARAMETER.toString()));
 	}
 	
@@ -155,7 +155,7 @@ public class CardLockTest {
 		
 		// Assert result request
 		Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_FORBIDDEN);
-		Assert.assertTrue(result.getDescription().toLowerCase().indexOf(pan) != -1);
+		Assert.assertTrue(result.getErrorMessage().toLowerCase().indexOf(pan) != -1);
 		Assert.assertTrue(result.getErrorKey().equals(CardLockKeyType.TRANSACTION_ALREADY_USED.toString()));
 	}
 	
@@ -200,7 +200,7 @@ public class CardLockTest {
 		
 		// Assert result request
 		Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_FORBIDDEN);
-		Assert.assertTrue(result.getDescription().equals(CardLockKeyType.CARD_ALREADY_LOCKED.getDescription()));
+		Assert.assertTrue(result.getErrorMessage().equals(CardLockKeyType.CARD_ALREADY_LOCKED.getDescription()));
 		Assert.assertTrue(result.getErrorKey().equals(CardLockKeyType.CARD_ALREADY_LOCKED.toString()));
 	}
 	
@@ -245,7 +245,7 @@ public class CardLockTest {
 		
 		// Assert result request
 		Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_NOT_FOUND);
-		Assert.assertTrue(result.getDescription().equals(CardLockKeyType.NO_CARD_FOUND.getDescription()));
+		Assert.assertTrue(result.getErrorMessage().equals(CardLockKeyType.NO_CARD_FOUND.getDescription()));
 		Assert.assertTrue(result.getErrorKey().equals(CardLockKeyType.NO_CARD_FOUND.toString()));
 	}
 }

@@ -8,6 +8,11 @@ package wirecard.test.pojo;
 public class ApiReturnPojo {
 	
 	/**
+	 * The error code
+	 */
+	private Integer errorCode;
+	
+	/**
 	 *  The error key response from api request
 	 */
 	private String errorKey;
@@ -15,23 +20,7 @@ public class ApiReturnPojo {
 	/**
 	 *  The description returned from api request
 	 */
-	private String description;
-	
-	/**
-	 *  Gets the description
-	 * @return String description
-	 */
-	public String getDescription() {
-		return description;
-	}
-	
-	/**
-	 * Sets description
-	 * @param String description
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	private String errorMessage;
 	
 	/**
 	 *  Gets the error key
@@ -47,5 +36,21 @@ public class ApiReturnPojo {
 	 */
 	public void setErrorKey(String errorKey) {
 		this.errorKey = errorKey;
+	}
+
+	public Integer getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(Integer errorCode) {
+		this.errorCode = errorCode;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 }

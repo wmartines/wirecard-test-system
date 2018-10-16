@@ -20,15 +20,15 @@ public enum RegistrationKeyType {
 	USER_WITH_THIS_EMAIL_EXISTS("User with this email address already exists");
 	
 	/** The registration status descripion*/
-	private final String description;
+	private final String errorMessage;
 	
-	RegistrationKeyType(String description){
+	RegistrationKeyType(String errorMessage){
 		
-		this.description = description;
+		this.errorMessage = errorMessage;
 	}
 	
 	/** Gets the registration status descripion*/
-	public String getDescription() {
-		return description;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 }

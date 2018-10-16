@@ -1,12 +1,13 @@
 package wirecard.test.java;
 
 import java.io.IOException;
+import java.util.Random;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -38,19 +39,24 @@ public class RegistrationTest {
 	public void performValidRegistrationAndCheckPanNumber ()
 	  throws ClientProtocolException, IOException {
 	  
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		Random random = new Random();
+		Integer generatedMobileNumber = random.nextInt(800000000) + 800000000;
 	   // Mock url
 	   HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
 	   // Json string
 	   String json = "{\n" + 
-	   		"  \"salutation\":\"wirecard\",\n" + 
-	   		"  \"firstName\":\"mocktest\",\n" + 
-	   		"  \"lastName\":\"wirecard\",\n" + 
-	   		"  \"birthDate\":\"1987-05-25\",\n" + 
-	   		"  \"mobileNumber\":\"+3538395234\",\n" + 
-	   		"  \"email\":\"test@wirecard.com\",\n" + 
-	   		"  \"loginName\":\"wirecard\",\n" + 
-	   		"  \"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+"+generatedMobileNumber+"\",\n" + 
+	   		"	\"email\":\""+randomID+"@gmail.com\",\n" + 
+	   		"	\"loginName\":\""+randomID+"\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
 	   		"}";
 	   
 	    // Sets json entity
@@ -83,19 +89,24 @@ public class RegistrationTest {
 	public void verifyLoginNameAfterRegistration ()
 	  throws ClientProtocolException, IOException {
 	  
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		Random random = new Random();
+		Integer generatedMobileNumber = random.nextInt(800000000) + 800000000;
 	   // Mock url
-	   HttpPost request = new HttpPost(UrlType.REGISTRATION_URL.getUrl());
+	   HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
 	   // Json string
 	   String json = "{\n" + 
-	   		"  \"salutation\":\"wirecard\",\n" + 
-	   		"  \"firstName\":\"mocktest\",\n" + 
-	   		"  \"lastName\":\"wirecard\",\n" + 
-	   		"  \"birthDate\":\"1987-05-25\",\n" + 
-	   		"  \"mobileNumber\":\"+3538395234\",\n" + 
-	   		"  \"email\":\"test@wirecard.com\",\n" + 
-	   		"  \"loginName\":\"wirecard\",\n" + 
-	   		"  \"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+"+generatedMobileNumber+"\",\n" + 
+	   		"	\"email\":\""+randomID+"@gmail.com\",\n" + 
+	   		"	\"loginName\":\""+randomID+"\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
 	   		"}";
 	   
 	    // Sets json entity
@@ -120,6 +131,7 @@ public class RegistrationTest {
 	}
 	
 	/**
+	 /**
 	 * Test responsible to perform a registration with valid parameters and check status
 	 * @throws ClientProtocolException
 	 * @throws IOException
@@ -127,20 +139,25 @@ public class RegistrationTest {
 	@Test
 	public void verifyRegistrationStatus ()
 	  throws ClientProtocolException, IOException {
-	  
+		
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		Random random = new Random();
+		Integer generatedMobileNumber = random.nextInt(800000000) + 800000000;
 	   // Mock url
-	   HttpPost request = new HttpPost(UrlType.REGISTRATION_URL.getUrl());
+	   HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
 	   // Json string
 	   String json = "{\n" + 
-	   		"\"salutation\":\"MR\", \n" + 
-	   		"\"firstName\":\"mocktest\",\n" + 
-	   		"\"lastName\":\"wirecard\",\n" + 
-	   		"\"birthDate\":\"1987-05-25\", \n" + 
-	   		"\"mobileNumber\":\"+3538395234\",\n" + 
-	   		"\"email\":\"test@wirecard.com\", \n" + 
-	   		"\"loginName\":\"wirecard\", \n" + 
-	   		"\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+"+generatedMobileNumber+"\",\n" + 
+	   		"	\"email\":\""+randomID+"@gmail.com\",\n" + 
+	   		"	\"loginName\":\""+randomID+"\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
 	   		"}";
 	   
 	    // Sets json entity
@@ -165,31 +182,36 @@ public class RegistrationTest {
 	}
 	
 	/**
-	 * Test responsible to perform a registration with missing parameters not mandatory
+	 * Test responsible to perform a registration with missing parameters not
+	 * mandatory
+	 * 
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
 	@Test
-	public void verifyRegistrationStatusMissingInformations ()
-	  throws ClientProtocolException, IOException {
-	  
-	   // Mock url
-	   HttpPost request = new HttpPost(UrlType.REGISTRATION_URL.getUrl());
+	public void verifyRegistrationStatusMissingInformations() throws ClientProtocolException, IOException {
+
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		Random random = new Random();
+		Integer generatedMobileNumber = random.nextInt(800000000) + 800000000;
+		// Mock url
+		HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
-	   // Json string
+	    // Json string
 	   String json = "{\n" + 
-	   		"\"salutation\":\"MR\", \n" + 
-	   		"\"firstName\":\"mocktest\",\n" + 
-	   		"\"lastName\":\"wirecard\",\n" + 
-	   		"\"birthDate\":\"1987-05-25\", \n" + 
-	   		"\"mobileNumber\":\"+3538395234\",\n" + 
-	   		"\"email\":\"\", \n" + 
-	   		"\"loginName\":\"\", \n" + 
-	   		"\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+"+generatedMobileNumber+"\",\n" + 
+	   		"	\"email\":\""+randomID+"@gmail.com\",\n" + 
+	   		"	\"loginName\":\"\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
 	   		"	\n" + 
 	   		"}";
 	   
-	    // Sets json entity
+	    // Sets json enti
 	    StringEntity entity = new StringEntity(json);
 	    request.setEntity(entity);
 	    request.setHeader("Accept", "application/json");
@@ -250,7 +272,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_BAD_REQUEST);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.toString())); 
 	}
 	
@@ -295,7 +317,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_BAD_REQUEST);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.toString())); 
 	}
 	
@@ -340,7 +362,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_BAD_REQUEST);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.toString())); 
 	}
 	
@@ -385,7 +407,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_BAD_REQUEST);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.toString())); 
 	}
 	
@@ -430,7 +452,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_BAD_REQUEST);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.MISSING_MANDATORY_FIELD.toString())); 
 	}
 	
@@ -443,19 +465,23 @@ public class RegistrationTest {
 	public void verifyRegistrationStatusMobileNumberAlreadyRegistered()
 	  throws ClientProtocolException, IOException {
 	  
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		
 	   // Mock url
 	   HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
-	   // Json string
+	// Json string
 	   String json = "{\n" + 
-	   		"\"salutation\":\"MR\", \n" + 
-	   		"\"firstName\":\"wirecard\",\n" + 
-	   		"\"lastName\":\"wirecard\",\n" + 
-	   		"\"birthDate\":\"1987-05-25\", \n" + 
-	   		"\"mobileNumber\":\"+35383972\",\n" + 
-	   		"\"email\":\"test@wirecard.com\", \n" + 
-	   		"\"loginName\":\"wirecard\", \n" + 
-	   		"\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+35383972\",\n" + 
+	   		"	\"email\":\""+randomID+"@gmail.com\",\n" + 
+	   		"	\"loginName\":\""+randomID+"\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
 	   		"}";
 	   
 	    // Sets json entity
@@ -475,7 +501,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_FORBIDDEN);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.USER_WITH_THIS_PHONE_NUMBER_EXISTS.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.USER_WITH_THIS_PHONE_NUMBER_EXISTS.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.USER_WITH_THIS_PHONE_NUMBER_EXISTS.toString())); 
 	}
 	
@@ -488,19 +514,24 @@ public class RegistrationTest {
 	public void verifyRegistrationStatusLoginNameAlreadyRegistered()
 	  throws ClientProtocolException, IOException {
 	  
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		Random random = new Random();
+		Integer generatedMobileNumber = random.nextInt(800000000) + 800000000;
 	   // Mock url
 	   HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
 	   // Json string
 	   String json = "{\n" + 
-	   		"\"salutation\":\"MR\", \n" + 
-	   		"\"firstName\":\"wirecard\",\n" + 
-	   		"\"lastName\":\"wirecard\",\n" + 
-	   		"\"birthDate\":\"1987-05-25\", \n" + 
-	   		"\"mobileNumber\":\"+35383972\",\n" + 
-	   		"\"email\":\"test@wirecard.com\", \n" + 
-	   		"\"loginName\":\"wirecard\", \n" + 
-	   		"\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+"+generatedMobileNumber+"\",\n" + 
+	   		"	\"email\":\""+randomID+"@gmail.com\",\n" + 
+	   		"	\"loginName\":\"wirecard\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
 	   		"}";
 	   
 	    // Sets json entity
@@ -520,7 +551,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_FORBIDDEN);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.USER_WITH_THIS_LOGIN_NAME_EXISTS.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.USER_WITH_THIS_LOGIN_NAME_EXISTS.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.USER_WITH_THIS_LOGIN_NAME_EXISTS.toString())); 
 	}
 	
@@ -533,19 +564,24 @@ public class RegistrationTest {
 	public void verifyRegistrationStatusEmailAlreadyRegistered()
 	  throws ClientProtocolException, IOException {
 	  
+		String randomID = UUID.randomUUID().toString().replaceAll("[^\\d]", "");
+		Random random = new Random();
+		Integer generatedMobileNumber = random.nextInt(800000000) + 800000000;
 	   // Mock url
 	   HttpPut request = new HttpPut(UrlType.REGISTRATION_URL.getUrl());
 	   
 	   // Json string
 	   String json = "{\n" + 
-	   		"\"salutation\":\"MR\", \n" + 
-	   		"\"firstName\":\"wirecard\",\n" + 
-	   		"\"lastName\":\"wirecard\",\n" + 
-	   		"\"birthDate\":\"1987-05-25\", \n" + 
-	   		"\"mobileNumber\":\"+35383972\",\n" + 
-	   		"\"email\":\"test@wirecard.com\", \n" + 
-	   		"\"loginName\":\"wirecard\", \n" + 
-	   		"\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
+	   		"	\"salutation\":\"MR\",\n" + 
+	   		"	\"firsName\":\"Mike\",\n" + 
+	   		"	\"lastName\":\""+randomID+"\",\n" + 
+	   		"	\"birthDate\":\"1987-05-25\",\n" + 
+	   		"	\"mobileNumber\":\"+"+generatedMobileNumber+"\",\n" + 
+	   		"	\"email\":\"mike@gmail.com\",\n" + 
+	   		"	\"loginName\":\""+randomID+"\",\n" + 
+	   		"	\"password\":\"wirecard123\"\n" + 
+	   		"	\n" + 
 	   		"}";
 	   
 	    // Sets json entity
@@ -565,7 +601,7 @@ public class RegistrationTest {
 	   
 	   // Assert result request
 	   Assert.assertTrue(httpResponse.getStatusLine().getStatusCode() ==  HttpStatus.SC_FORBIDDEN);
-	   Assert.assertTrue(result.getDescription().equals(RegistrationKeyType.USER_WITH_THIS_EMAIL_EXISTS.getDescription()));
+	   Assert.assertTrue(result.getErrorMessage().equals(RegistrationKeyType.USER_WITH_THIS_EMAIL_EXISTS.getErrorMessage()));
 	   Assert.assertTrue(result.getErrorKey().equals(RegistrationKeyType.USER_WITH_THIS_EMAIL_EXISTS.toString())); 
 	}
 }
